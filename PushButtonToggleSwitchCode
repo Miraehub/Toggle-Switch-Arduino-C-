@@ -1,0 +1,37 @@
+#include <Arduino.h>
+
+// put function declarations here:
+//int myFunction(int, int);
+int pushPin = 2;
+int ledPin = 13;
+int pushOld = 1;
+int pushNew = 0;
+int ledState = 0;
+
+
+void setup() {
+
+Serial.begin(9600);
+pinMode(ledPin ,OUTPUT);
+pinMode (pushPin , INPUT);
+
+}
+void loop() {
+
+    pushNew= digitalRead(pushPin);
+    if (pushOld==0 && pushNew==1){
+        if (ledState == 0){
+            digitalWrite(ledPin, HIGH);
+            ledState = 1;
+        }
+        else{
+            digitalWrite(ledPin, LOW);
+            ledState = 0;
+        }
+    }
+  pushOld=pushNew;
+
+
+
+
+}
